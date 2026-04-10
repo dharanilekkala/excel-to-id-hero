@@ -10,9 +10,14 @@ export interface MemberData {
   Address?: string;
   Blood_Group?: string;
   Joining_Date?: string;
+  // School-specific fields
+  Father_Name?: string;
+  Class_Section?: string;
+  Roll_Number?: string;
+  Village?: string;
 }
 
-export type TemplateStyle = "corporate" | "modern" | "minimal";
+export type TemplateStyle = "corporate" | "modern" | "minimal" | "school";
 export type TemplateOrientation = "portrait" | "landscape";
 
 export interface TemplateConfig {

@@ -1,4 +1,4 @@
-import { CreditCard, LayoutTemplate, Minus } from "lucide-react";
+import { CreditCard, LayoutTemplate, Minus, GraduationCap } from "lucide-react";
 import type { TemplateStyle, TemplateOrientation, TemplateConfig } from "@/lib/types";
 
 interface TemplateSelectorProps {
@@ -10,6 +10,7 @@ const STYLES: { value: TemplateStyle; label: string; icon: React.ReactNode }[] =
   { value: "corporate", label: "Corporate", icon: <CreditCard className="h-4 w-4" /> },
   { value: "modern", label: "Modern", icon: <LayoutTemplate className="h-4 w-4" /> },
   { value: "minimal", label: "Minimal", icon: <Minus className="h-4 w-4" /> },
+  { value: "school", label: "School", icon: <GraduationCap className="h-4 w-4" /> },
 ];
 
 export default function TemplateSelector({ config, onChange }: TemplateSelectorProps) {
