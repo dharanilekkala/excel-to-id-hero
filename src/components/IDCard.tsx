@@ -1,4 +1,5 @@
 import { User, Phone, Mail, Building2, Briefcase } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import type { MemberData, TemplateConfig } from "@/lib/types";
 
 interface IDCardProps {
@@ -151,14 +152,22 @@ export default function IDCard({ member, config, forExport = false }: IDCardProp
 
       <div className={`flex gap-3 px-4 pt-3 ${isLandscape ? "flex-row items-start" : "flex-col items-center"}`}>
         {/* Photo placeholder */}
-        <div className={`flex-shrink-0 overflow-hidden rounded-lg border-2 border-secondary/20 bg-muted ${isLandscape ? "h-[90px] w-[80px]" : "h-[90px] w-[80px]"}`}>
-          {member.Photo_URL ? (
-            <img src={member.Photo_URL} alt={member.Name} className="h-full w-full object-cover" />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <User className="h-8 w-8 text-muted-foreground/40" />
-            </div>
-          )}
+        <div className="flex flex-col items-center gap-2">
+          <div className={`flex-shrink-0 overflow-hidden rounded-lg border-2 border-secondary/20 bg-muted ${isLandscape ? "h-[80px] w-[70px]" : "h-[80px] w-[70px]"}`}>
+            {member.Photo_URL ? (
+              <img src={member.Photo_URL} alt={member.Name} className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <User className="h-8 w-8 text-muted-foreground/40" />
+              </div>
+            )}
+          </div>
+          <QRCodeSVG
+            value={`${member.Roll_Number || member.ID_Number} | ${member.Name}`}
+            size={50}
+            level="M"
+            className="rounded"
+          />
         </div>
 
         {/* Details */}
