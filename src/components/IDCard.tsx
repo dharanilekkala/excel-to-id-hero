@@ -1,4 +1,5 @@
 import { User, Phone, Mail, Building2, Briefcase } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import type { MemberData, TemplateConfig } from "@/lib/types";
 
 interface IDCardProps {
