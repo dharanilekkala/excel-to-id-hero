@@ -68,9 +68,9 @@ const SAMPLE_DATA: MemberData[] = [
 export default function Index() {
   const [members, setMembers] = useState<MemberData[]>([]);
   const [config, setConfig] = useState<TemplateConfig>({
-    style: "corporate",
+    style: "school",
     orientation: "portrait",
-    orgName: "",
+    orgName: "Creek School",
   });
   const [step, setStep] = useState<"upload" | "generate">("upload");
 
