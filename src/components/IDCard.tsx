@@ -139,11 +139,80 @@ export default function IDCard({ member, config, forExport = false }: IDCardProp
     </div>
   );
 
+  const renderSchool = () => (
+    <div style={cardStyle} className="relative overflow-hidden rounded-xl border-2 border-secondary/30 bg-gradient-to-b from-secondary/5 to-card shadow-lg">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-secondary to-secondary/80 px-4 py-2.5 text-center">
+        <h3 className="text-[13px] font-extrabold uppercase tracking-wider text-secondary-foreground drop-shadow-sm">
+          {config.orgName || "School Name"}
+        </h3>
+        <p className="text-[8px] font-medium text-secondary-foreground/70 tracking-widest mt-0.5">STUDENT IDENTITY CARD</p>
+      </div>
+
+      <div className={`flex gap-3 px-4 pt-3 ${isLandscape ? "flex-row items-start" : "flex-col items-center"}`}>
+        {/* Photo placeholder */}
+        <div className={`flex-shrink-0 overflow-hidden rounded-lg border-2 border-secondary/20 bg-muted ${isLandscape ? "h-[90px] w-[80px]" : "h-[90px] w-[80px]"}`}>
+          {member.Photo_URL ? (
+            <img src={member.Photo_URL} alt={member.Name} className="h-full w-full object-cover" />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <User className="h-8 w-8 text-muted-foreground/40" />
+            </div>
+          )}
+        </div>
+
+        {/* Details */}
+        <div className={`flex flex-col gap-1 text-[10px] w-full ${isLandscape ? "" : ""}`}>
+          <div className="flex gap-1">
+            <span className="font-bold text-foreground min-w-[70px]">Name:</span>
+            <span className="text-foreground">{member.Name || "—"}</span>
+          </div>
+          {member.Father_Name && (
+            <div className="flex gap-1">
+              <span className="font-bold text-foreground min-w-[70px]">Father:</span>
+              <span className="text-muted-foreground">{member.Father_Name}</span>
+            </div>
+          )}
+          <div className="flex gap-1">
+            <span className="font-bold text-foreground min-w-[70px]">Class:</span>
+            <span className="text-muted-foreground">{member.Class_Section || member.Department || "—"}</span>
+          </div>
+          {(member.Roll_Number || member.ID_Number) && (
+            <div className="flex gap-1">
+              <span className="font-bold text-foreground min-w-[70px]">Roll No:</span>
+              <span className="font-mono font-semibold text-secondary">{member.Roll_Number || member.ID_Number}</span>
+            </div>
+          )}
+          {member.Phone && (
+            <div className="flex gap-1">
+              <span className="font-bold text-foreground min-w-[70px]">Phone:</span>
+              <span className="text-muted-foreground">{member.Phone}</span>
+            </div>
+          )}
+          {member.Village && (
+            <div className="flex gap-1">
+              <span className="font-bold text-foreground min-w-[70px]">Village:</span>
+              <span className="text-muted-foreground">{member.Village}</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="absolute inset-x-0 bottom-0 border-t border-secondary/10 bg-secondary/5 px-4 py-1.5 text-center">
+        <p className="text-[8px] font-medium text-muted-foreground italic">
+          {config.orgName || "School"} — Building Future Leaders
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <div className={forExport ? "" : "transition-transform hover:scale-[1.02] duration-200"}>
       {config.style === "corporate" && renderCorporate()}
       {config.style === "modern" && renderModern()}
       {config.style === "minimal" && renderMinimal()}
+      {config.style === "school" && renderSchool()}
     </div>
   );
 }
